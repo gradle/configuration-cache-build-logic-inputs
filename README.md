@@ -1,4 +1,4 @@
-# configuration-cache-build-logic-inputs
+# Configuration cache configuration input tracking
 
 Samples to demonstrate some improvements to configuration input tracking that will be included in Gradle 8.1.
 
