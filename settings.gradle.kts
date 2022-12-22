@@ -1,5 +1,5 @@
 pluginManagement {
-    includeBuild("plugins")
+    includeBuild("java-plugins")
 }
 
 include("file-collections")
