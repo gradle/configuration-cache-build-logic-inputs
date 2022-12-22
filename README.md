@@ -1,2 +1,3 @@
 # configuration-cache-build-logic-inputs
-Samples to demonstrate improvements to build logic input tracking
+
+Samples to demonstrate improvements in build logic input tracking
