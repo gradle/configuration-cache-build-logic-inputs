@@ -50,7 +50,7 @@ Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins
 > ./gradlew queryDirInPlugin
 
 # Create new a file -> cache miss
-> echo changed > file-collections/src/dir/file4.txt
+> echo plugin > file-collections/src/dir/file4.txt
 > ./gradlew queryDirInPlugin
 
 # Create an excluded file -> cache hit
@@ -63,3 +63,5 @@ Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins
 ```
 
 You can try other mutations, such as deleting files or directories, adding new files or directories, etc.
+
+# Not yet complete
