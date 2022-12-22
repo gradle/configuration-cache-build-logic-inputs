@@ -49,12 +49,12 @@ Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins
 # Cache hit
 > ./gradlew queryDirInPlugin
 
-# Change a file -> cache miss
-> echo changed > file-collections/src/dir/file3.txt
+# Create new a file -> cache miss
+> echo changed > file-collections/src/dir/file4.txt
 > ./gradlew queryDirInPlugin
 
 # Create an excluded file -> cache hit
-> echo ignored > file-collections/src/dir/file3.java
+> echo ignored > file-collections/src/dir/file4.java
 > ./gradlew queryDirInPlugin
 
 # Create an empty directory -> cache hit
@@ -62,4 +62,4 @@ Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins
 > ./gradlew queryDirInPlugin
 ```
 
-You can try other mutations, such as deleting file or directories, changing their content, etc.
+You can try other mutations, such as deleting files or directories, adding new files or directories, etc.
