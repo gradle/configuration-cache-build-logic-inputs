@@ -1,14 +1,14 @@
 # configuration-cache-build-logic-inputs
 
-Samples to demonstrate improvements in build logic input tracking. These improvements will be included in Gradle 8.1
+Samples to demonstrate some improvements to configuration input tracking that will be included in Gradle 8.1.
 
 ## FileCollections queried at configuration time are included in fingerprint
 
 File collections that are queried at configuration time are now treated as configuration inputs and included in
-the configuration cache fingerprint. When the contents of these file collections change, the configuration cache
-entry is invalidated.
+the configuration cache fingerprint. When the contents of these file collections change, Gradle invalidates the configuration cache
+entry.
 
-To try this out, use the [`queryDirInDsl`](file-collections/build.gradle.kts) task. The build script queries the contents
+To try this out, use the [`queryDirInDsl`](file-collections/build.gradle.kts#L5) task. The build script queries the contents
 of `file-collections/src/dir` at configuration time.
 
 When a new file is added to `file-collections/src/dir`, the configuration cache entry is invalidated.
@@ -22,9 +22,9 @@ which input has changed. This will be improved in Gradle 8.1 to be more useful.
 > ./gradlew queryDirInDsl
 
 # Create a new file
-> touch file-collections/src/dir/file2.txt
+> echo dsl > file-collections/src/dir/file2.txt
 
-# Cache miss
+# Cache miss, reports the correct file names
 > ./gradlew queryDirInDsl
 ```
 
@@ -35,16 +35,18 @@ Compare this with Gradle 7.6, where the new file is ignored:
 > gradle76 queryDirInDsl
 
 # Create a new file -> cache hit
-> touch file-collections/src/dir/file3.txt
+> echo ignored > file-collections/src/dir/file3.txt
 
-# Incorrect cache hit, teports incorrect file names
+# Incorrect cache hit, reports incorrect file names
 > gradle76 queryDirInDsl
 ```
 
-Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins/FileCollectionPlugin.java) does the same thing:
+Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins/FileCollectionPlugin.java#l16) does the same thing:
 
 ```shell
 > ./gradlew queryDirInPlugin
+
+# Cache hit
 > ./gradlew queryDirInPlugin
 
 # Change a file -> cache miss
@@ -52,7 +54,7 @@ Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins
 > ./gradlew queryDirInPlugin
 
 # Create an excluded file -> cache hit
-> touch file-collections/src/dir/file3.java
+> echo ignored > file-collections/src/dir/file3.java
 > ./gradlew queryDirInPlugin
 
 # Create an empty directory -> cache hit
