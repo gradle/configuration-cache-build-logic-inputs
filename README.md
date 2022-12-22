@@ -41,7 +41,7 @@ Compare this with Gradle 7.6, where the new file is ignored:
 > gradle76 queryDirInDsl
 ```
 
-Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins/FileCollectionPlugin.java#l16) does the same thing:
+Here's another example, where a [plugin](java-plugins/src/main/java/test/plugins/FileCollectionPlugin.java#L16) does the same thing:
 
 ```shell
 > ./gradlew queryDirInPlugin
